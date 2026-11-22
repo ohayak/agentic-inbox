@@ -9,11 +9,21 @@
 	"compatibility_flags": [
 		"nodejs_compat"
 	],
+	// Served only on the Access-protected hostname: the agent panel uses WebSockets, which need a
+	// hostname-based (self-hosted) Access application rather than Worker-level Access.
+	"routes": [
+		{
+			"pattern": "inbox.hykops.com",
+			"custom_domain": true
+		}
+	],
+	"workers_dev": false,
+	"preview_urls": false,
 	"vars": {
 		// Production deploys must also define POLICY_AUD and TEAM_DOMAIN.
 		// TEAM_DOMAIN may be the base Access URL or the full /cdn-cgi/access/certs URL.
 		// The worker now fails closed outside local development if Access is not configured.
-		"DOMAINS": "example.com",
+		"DOMAINS": "hykops.com",
 		"EMAIL_ADDRESSES": []
 	},
 	"send_email": [
